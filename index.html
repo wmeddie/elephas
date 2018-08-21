@@ -1,420 +1,487 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Elephas by maxpumperla</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Elephas</h1>
-      <h2 class="project-tagline">Deep learning on Spark with Keras</h2>
-      <a href="https://github.com/maxpumperla/elephas" class="btn">View on GitHub</a>
-      <a href="https://github.com/maxpumperla/elephas/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/maxpumperla/elephas/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentation for Elephas, Distributed Deep Learning with Keras & Spark">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - Elephas Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-    <section class="main-content">
-      <h1>
-<a id="elephas-distributed-deep-learning-with-keras--spark-" class="anchor" href="#elephas-distributed-deep-learning-with-keras--spark-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Elephas: Distributed Deep Learning with Keras &amp; Spark <a href="https://travis-ci.org/maxpumperla/elephas"><img src="https://travis-ci.org/maxpumperla/elephas.svg?branch=master" alt="Build Status"></a>
-</h1>
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/elephas/";
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
 
-<p>Elephas is an extension of <a href="http://keras.io">Keras</a>, which allows you to run distributed deep learning models at scale with <a href="http://spark.apache.org">Spark</a>. Elephas currently supports a number of applications, including:</p>
+<body class="wy-body-for-nav" role="document">
 
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Elephas Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#elephas-distributed-deep-learning-with-keras-spark">Elephas: Distributed Deep Learning with Keras &amp; Spark</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#introduction">Introduction</a></li>
+        
+            <li><a class="toctree-l3" href="#getting-started">Getting started</a></li>
+        
+            <li><a class="toctree-l3" href="#basic-spark-integration">Basic Spark integration</a></li>
+        
+            <li><a class="toctree-l3" href="#spark-mllib-integration">Spark MLlib integration</a></li>
+        
+            <li><a class="toctree-l3" href="#spark-ml-integration">Spark ML integration</a></li>
+        
+            <li><a class="toctree-l3" href="#distributed-hyper-parameter-optimization">Distributed hyper-parameter optimization</a></li>
+        
+            <li><a class="toctree-l3" href="#distributed-training-of-ensemble-models">Distributed training of ensemble models</a></li>
+        
+            <li><a class="toctree-l3" href="#discussion">Discussion</a></li>
+        
+            <li><a class="toctree-l3" href="#literature">Literature</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="why-use-elephas/">Why use Elephas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Getting started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="getting-started/getting-started/">Getting started with Elephas</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="getting-started/faq/">FAQ</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Models</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="models/about-elephas-models/">About Elephas models</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="models/spark-model/">SparkModel</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="models/spark-mllib-model/">SparkMLlibModel</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="models/spark-ml-model/">ElephasEstimator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="models/hyper-param-model/">HyperParamModel</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Parameter server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="parameter/server/">Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="parameter/client/">Clients</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Utilities</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="utils/rdd_utils/">RDD utils</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="utils/functional_utils/">Functional utils</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="utils/serialization.md">Serialization utils</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Spark ML and MLlib adapters</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="adapters/spark-ml/">Spark ML</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="Spark MLlib; adapters/spark-mllib.md">None</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Elephas Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="http://github.com/maxpumperla/elephas/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="elephas-distributed-deep-learning-with-keras-spark">Elephas: Distributed Deep Learning with Keras &amp; Spark</h1>
+<h2 id="_1"></h2>
+<p><a href="https://travis-ci.org/maxpumperla/elephas"><img alt="Build Status" src="https://travis-ci.org/maxpumperla/elephas.svg?branch=master" /></a>
+<a href="https://github.com/maxpumperla/elephas/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" /></a></p>
+<p>Elephas is an extension of <a href="http://keras.io">Keras</a>, which allows you to run distributed deep learning models at 
+scale with <a href="http://spark.apache.org">Spark</a>. Elephas currently supports a number of 
+applications, including:</p>
 <ul>
-<li><a href="#usage-of-data-parallel-models">Data-parallel training of deep learning models</a></li>
+<li><a href="#basic-spark-integration">Data-parallel training of deep learning models</a></li>
 <li><a href="#distributed-hyper-parameter-optimization">Distributed hyper-parameter optimization</a></li>
 <li><a href="#distributed-training-of-ensemble-models">Distributed training of ensemble models</a></li>
 </ul>
-
 <p>Schematically, elephas works as follows.</p>
-
-<p><img src="elephas.gif" alt="Elephas"></p>
-
-<p>Table of content:</p>
-
-<ul>
-<li>
-<a href="#elephas-distributed-deep-learning-with-keras-&amp;-spark-">Elephas: Distributed Deep Learning with Keras &amp; Spark</a>
-
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li>
-<a href="#getting-started">Getting started</a>
-
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#basic-example">Basic example</a></li>
-<li><a href="#spark-ml-example">Spark ML example</a></li>
-</ul>
-</li>
-<li>
-<a href="#usage-of-data-parallel-models">Usage of data-parallel models</a>
-
-<ul>
-<li><a href="#model-updates-optimizers">Model updates (optimizers)</a></li>
-<li><a href="#update-frequency">Update frequency</a></li>
-<li>
-<a href="#update-mode">Update mode</a>
-
-<ul>
-<li><a href="#asynchronous-updates-with-read-and-write-locks-modeasynchronous">Asynchronous updates with read and write locks (<code>mode='asynchronous'</code>)</a></li>
-<li><a href="#asynchronous-updates-without-locks-modehogwild">Asynchronous updates without locks (<code>mode='hogwild'</code>)</a></li>
-<li><a href="#synchronous-updates-modesynchronous">Synchronous updates (<code>mode='synchronous'</code>)</a></li>
-</ul>
-</li>
-<li><a href="#degree-of-parallelization-number-of-workers">Degree of parallelization (number of workers)</a></li>
-</ul>
-</li>
-<li><a href="#distributed-hyper-parameter-optimization">Distributed hyper-parameter optimization</a></li>
-<li><a href="#distributed-training-of-ensemble-models">Distributed training of ensemble models</a></li>
-<li><a href="#discussion">Discussion</a></li>
-<li><a href="#future-work-&amp;-contributions">Future work &amp; contributions</a></li>
-<li><a href="#literature">Literature</a></li>
-</ul>
-</li>
-</ul>
-
-<h2>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
-
-<p>Elephas brings deep learning with <a href="http://keras.io">Keras</a> to <a href="http://spark.apache.org">Spark</a>. Elephas intends to keep the simplicity and high usability of Keras, thereby allowing for fast prototyping of distributed models, which can be run on massive data sets. For an introductory example, see the following <a href="https://github.com/maxpumperla/elephas/blob/master/examples/Spark_ML_Pipeline.ipynb">iPython notebook</a>.</p>
-
-<p>ἐλέφας is Greek for <em>ivory</em> and an accompanying project to κέρας, meaning <em>horn</em>. If this seems weird mentioning, like a bad dream, you should confirm it actually is at the <a href="https://github.com/fchollet/keras/blob/master/README.md">Keras documentation</a>. Elephas also means <em>elephant</em>, as in stuffed yellow elephant.</p>
-
-<p>Elephas implements a class of data-parallel algorithms on top of Keras, using Spark's RDDs and data frames. Keras Models are initialized on the driver, then serialized and shipped to workers, alongside with data and broadcasted model parameters. Spark workers deserialize the model, train their chunk of data and send their gradients back to the driver. The "master" model on the driver is updated by an optimizer, which takes gradients either synchronously or asynchronously.</p>
-
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h2>
-
-<h3>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
-
-<p>Install elephas from PyPI with</p>
-
+<p><img alt="Elephas" src="elephas.gif" /></p>
+<p>Table of content:
+* <a href="#elephas-distributed-deep-learning-with-keras-&amp;-spark-">Elephas: Distributed Deep Learning with Keras &amp; Spark</a>
+  * <a href="#introduction">Introduction</a>
+  * <a href="#getting-started">Getting started</a>
+  * <a href="#basic-spark-integration">Basic Spark integration</a>
+  * <a href="#spark-mllib-integration">Spark MLlib integration</a>
+  * <a href="#spark-ml-integration">Spark ML integration</a>
+  * <a href="#distributed-hyper-parameter-optimization">Distributed hyper-parameter optimization</a>
+  * <a href="#distributed-training-of-ensemble-models">Distributed training of ensemble models</a>
+  * <a href="#discussion">Discussion</a>
+  * <a href="#literature">Literature</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>Elephas brings deep learning with <a href="http://keras.io">Keras</a> to <a href="http://spark.apache.org">Spark</a>. Elephas intends to 
+keep the simplicity and high usability of Keras, thereby allowing for fast prototyping of distributed models, which 
+can be run on massive data sets. For an introductory example, see the following 
+<a href="https://github.com/maxpumperla/elephas/blob/master/examples/Spark_ML_Pipeline.ipynb">iPython notebook</a>.</p>
+<p>ἐλέφας is Greek for <em>ivory</em> and an accompanying project to κέρας, meaning <em>horn</em>. If this seems weird mentioning, like 
+a bad dream, you should confirm it actually is at the 
+<a href="https://github.com/fchollet/keras/blob/master/README.md">Keras documentation</a>. 
+Elephas also means <em>elephant</em>, as in stuffed yellow elephant.</p>
+<p>Elephas implements a class of data-parallel algorithms on top of Keras, using Spark's RDDs and data frames. 
+Keras Models are initialized on the driver, then serialized and shipped to workers, alongside with data and broadcasted 
+model parameters. Spark workers deserialize the model, train their chunk of data and send their gradients back to the 
+driver. The "master" model on the driver is updated by an optimizer, which takes gradients either synchronously or
+asynchronously.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Just install elephas from PyPI with, Spark will be installed through <code>pyspark</code> for you.</p>
 <pre><code>pip install elephas
 </code></pre>
 
-<p>Depending on what OS you are using, you may need to install some prerequisite modules (LAPACK, BLAS, fortran compiler) first.</p>
-
-<p>For example, on Ubuntu Linux:</p>
-
-<pre><code>sudo apt-get install liblapack-dev libblas-dev gfortran
+<p>That's it, you should now be able to run Elephas examples.</p>
+<h2 id="basic-spark-integration">Basic Spark integration</h2>
+<p>After installing both Elephas, you can train a model as follows. First, create a local pyspark context</p>
+<pre><code class="python">from pyspark import SparkContext, SparkConf
+conf = SparkConf().setAppName('Elephas_App').setMaster('local[8]')
+sc = SparkContext(conf=conf)
 </code></pre>
 
-<p>A quick way to install Spark locally is to use homebrew on Mac</p>
-
-<pre><code>brew install spark
+<p>Next, you define and compile a Keras model</p>
+<pre><code class="python">from keras.models import Sequential
+from keras.layers.core import Dense, Dropout, Activation
+from keras.optimizers import SGD
+model = Sequential()
+model.add(Dense(128, input_dim=784))
+model.add(Activation('relu'))
+model.add(Dropout(0.2))
+model.add(Dense(128))
+model.add(Activation('relu'))
+model.add(Dropout(0.2))
+model.add(Dense(10))
+model.add(Activation('softmax'))
+model.compile(loss='categorical_crossentropy', optimizer=SGD())
 </code></pre>
 
-<p>or linuxbrew on linux.</p>
-
-<pre><code>brew install apache-spark
+<p>and create an RDD from numpy arrays (or however you want to create an RDD)</p>
+<pre><code class="python">from elephas.utils.rdd_utils import to_simple_rdd
+rdd = to_simple_rdd(sc, x_train, y_train)
 </code></pre>
 
-<p>The brew version of Spark may be outdated at times. To build from source, simply follow the instructions at the <a href="http://spark.apache.org/downloads.html">Spark download section</a> or use the following commands.  </p>
+<p>The basic model in Elephas is the <code>SparkModel</code>. You initialize a <code>SparkModel</code> by passing in a compiled Keras model, 
+an update frequency and a parallelization mode. After that you can simply <code>fit</code> the model on your RDD. Elephas <code>fit</code>
+has the same options as a Keras model, so you can pass <code>epochs</code>, <code>batch_size</code> etc. as you're used to from Keras.</p>
+<pre><code class="python">from elephas.spark_model import SparkModel
 
-<pre><code>wget http://apache.mirrors.tds.net/spark/spark-1.5.2/spark-1.5.2-bin-hadoop2.6.tgz -P ~
-sudo tar zxvf ~/spark-* -C /usr/local
-sudo mv /usr/local/spark-* /usr/local/spark
+spark_model = SparkModel(model, frequency='epoch', mode='asynchronous')
+spark_model.fit(rdd, epochs=20, batch_size=32, verbose=0, validation_split=0.1)
 </code></pre>
 
-<p>After that, make sure to put these path variables to your shell profile (e.g. <code>~/.zshrc</code>):</p>
-
-<pre><code>export SPARK_HOME=/usr/local/spark
-export PATH=$PATH:$SPARK_HOME/bin
+<p>Your script can now be run using spark-submit</p>
+<pre><code class="bash">spark-submit --driver-memory 1G ./your_script.py
 </code></pre>
 
-<h3>
-<a id="basic-example" class="anchor" href="#basic-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic example</h3>
-
-<p>After installing both Elephas and Spark, training a model is done schematically as follows:</p>
-
-<ul>
-<li>Create a local pyspark context</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> pyspark <span class="pl-k">import</span> SparkContext, SparkConf
-conf <span class="pl-k">=</span> SparkConf().setAppName(<span class="pl-s"><span class="pl-pds">'</span>Elephas_App<span class="pl-pds">'</span></span>).setMaster(<span class="pl-s"><span class="pl-pds">'</span>local[8]<span class="pl-pds">'</span></span>)
-sc <span class="pl-k">=</span> SparkContext(<span class="pl-v">conf</span><span class="pl-k">=</span>conf)</pre></div>
-
-<ul>
-<li>Define and compile a Keras model</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>model <span class="pl-k">=</span> Sequential()
-model.add(Dense(<span class="pl-c1">128</span>, <span class="pl-v">input_dim</span><span class="pl-k">=</span><span class="pl-c1">784</span>))
-model.add(Activation(<span class="pl-s"><span class="pl-pds">'</span>relu<span class="pl-pds">'</span></span>))
-model.add(Dropout(<span class="pl-c1">0.2</span>))
-model.add(Dense(<span class="pl-c1">128</span>))
-model.add(Activation(<span class="pl-s"><span class="pl-pds">'</span>relu<span class="pl-pds">'</span></span>))
-model.add(Dropout(<span class="pl-c1">0.2</span>))
-model.add(Dense(<span class="pl-c1">10</span>))
-model.add(Activation(<span class="pl-s"><span class="pl-pds">'</span>softmax<span class="pl-pds">'</span></span>))
-model.compile(<span class="pl-v">loss</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>categorical_crossentropy<span class="pl-pds">'</span></span>, <span class="pl-v">optimizer</span><span class="pl-k">=</span>SGD())</pre></div>
-
-<ul>
-<li>Create an RDD from numpy arrays</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> elephas.utils.rdd_utils <span class="pl-k">import</span> to_simple_rdd
-rdd <span class="pl-k">=</span> to_simple_rdd(sc, <span class="pl-c1">X_train</span>, <span class="pl-c1">Y_train</span>)</pre></div>
-
-<ul>
-<li>A SparkModel is defined by passing Spark context and Keras model. Additionally, one has choose an optimizer used for updating the elephas model, an update frequency, a parallelization mode and the degree of parallelism, i.e. the number of workers.</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> elephas.spark_model <span class="pl-k">import</span> SparkModel
-<span class="pl-k">from</span> elephas <span class="pl-k">import</span> optimizers <span class="pl-k">as</span> elephas_optimizers
-
-adagrad <span class="pl-k">=</span> elephas_optimizers.Adagrad()
-spark_model <span class="pl-k">=</span> SparkModel(sc,model, <span class="pl-v">optimizer</span><span class="pl-k">=</span>adagrad, <span class="pl-v">frequency</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>epoch<span class="pl-pds">'</span></span>, <span class="pl-v">mode</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>asynchronous<span class="pl-pds">'</span></span>, <span class="pl-v">num_workers</span><span class="pl-k">=</span><span class="pl-c1">2</span>)
-spark_model.train(rdd, <span class="pl-v">nb_epoch</span><span class="pl-k">=</span><span class="pl-c1">20</span>, <span class="pl-v">batch_size</span><span class="pl-k">=</span><span class="pl-c1">32</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">0</span>, <span class="pl-v">validation_split</span><span class="pl-k">=</span><span class="pl-c1">0.1</span>, <span class="pl-v">num_workers</span><span class="pl-k">=</span><span class="pl-c1">8</span>)</pre></div>
-
-<ul>
-<li>Run your script using spark-submit</li>
-</ul>
-
-<pre><code>spark-submit --driver-memory 1G ./your_script.py
+<p>Increasing the driver memory even further may be necessary, as the set of parameters in a network may be very large 
+and collecting them on the driver eats up a lot of resources. See the examples folder for a few working examples.</p>
+<h2 id="spark-mllib-integration">Spark MLlib integration</h2>
+<p>Following up on the last example, to use Spark's MLlib library with Elephas, you create an RDD of LabeledPoints for 
+supervised training as follows</p>
+<pre><code class="python">from elephas.utils.rdd_utils import to_labeled_point
+lp_rdd = to_labeled_point(sc, x_train, y_train, categorical=True)
 </code></pre>
-
-<p>Increasing the driver memory even further may be necessary, as the set of parameters in a network may be very large and collecting them on the driver eats up a lot of resources. See the examples folder for a few working examples.</p>
-
-<h3>
-<a id="spark-mllib-example" class="anchor" href="#spark-mllib-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Spark MLlib example</h3>
-
-<p>Following up on the last example, to create an RDD of LabeledPoints for supervised training from pairs of numpy arrays, use</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> elephas.utils.rdd_utils <span class="pl-k">import</span> to_labeled_point
-lp_rdd <span class="pl-k">=</span> to_labeled_point(sc, <span class="pl-c1">X_train</span>, <span class="pl-c1">Y_train</span>, <span class="pl-v">categorical</span><span class="pl-k">=</span><span class="pl-c1">True</span>)</pre></div>
 
 <p>Training a given LabeledPoint-RDD is very similar to what we've seen already</p>
+<pre><code class="python">from elephas.spark_model import SparkMLlibModel
+spark_model = SparkMLlibModel(model, frequency='batch', mode='hogwild')
+spark_model.train(lp_rdd, epochs=20, batch_size=32, verbose=0, validation_split=0.1, 
+                  categorical=True, nb_classes=nb_classes)
+</code></pre>
 
-<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> elephas.spark_model <span class="pl-k">import</span> SparkMLlibModel
-adadelta <span class="pl-k">=</span> elephas_optimizers.Adadelta()
-spark_model <span class="pl-k">=</span> SparkMLlibModel(sc,model, <span class="pl-v">optimizer</span><span class="pl-k">=</span>adadelta, <span class="pl-v">frequency</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>batch<span class="pl-pds">'</span></span>, <span class="pl-v">mode</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>hogwild<span class="pl-pds">'</span></span>, <span class="pl-v">num_workers</span><span class="pl-k">=</span><span class="pl-c1">2</span>)
-spark_model.train(lp_rdd, <span class="pl-v">nb_epoch</span><span class="pl-k">=</span><span class="pl-c1">20</span>, <span class="pl-v">batch_size</span><span class="pl-k">=</span><span class="pl-c1">32</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">0</span>, <span class="pl-v">validation_split</span><span class="pl-k">=</span><span class="pl-c1">0.1</span>, <span class="pl-v">categorical</span><span class="pl-k">=</span><span class="pl-c1">True</span>, <span class="pl-v">nb_classes</span><span class="pl-k">=</span>nb_classes)</pre></div>
-
-<h3>
-<a id="spark-ml-example" class="anchor" href="#spark-ml-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Spark ML example</h3>
-
+<h2 id="spark-ml-integration">Spark ML integration</h2>
 <p>To train a model with a SparkML estimator on a data frame, use the following syntax.</p>
+<pre><code class="python">df = to_data_frame(sc, x_train, y_train, categorical=True)
+test_df = to_data_frame(sc, x_test, y_test, categorical=True)
 
-<div class="highlight highlight-source-python"><pre>df <span class="pl-k">=</span> to_data_frame(sc, <span class="pl-c1">X_train</span>, <span class="pl-c1">Y_train</span>, <span class="pl-v">categorical</span><span class="pl-k">=</span><span class="pl-c1">True</span>)
-test_df <span class="pl-k">=</span> to_data_frame(sc, <span class="pl-c1">X_test</span>, <span class="pl-c1">Y_test</span>, <span class="pl-v">categorical</span><span class="pl-k">=</span><span class="pl-c1">True</span>)
+estimator = ElephasEstimator(model, epochs=epochs, batch_size=batch_size, frequency='batch', mode='asynchronous',
+                             categorical=True, nb_classes=nb_classes)
+fitted_model = estimator.fit(df)
+</code></pre>
 
-adadelta <span class="pl-k">=</span> elephas_optimizers.Adadelta()
-estimator <span class="pl-k">=</span> ElephasEstimator(sc,model,
-        <span class="pl-v">nb_epoch</span><span class="pl-k">=</span>nb_epoch, <span class="pl-v">batch_size</span><span class="pl-k">=</span>batch_size, <span class="pl-v">optimizer</span><span class="pl-k">=</span>adadelta, <span class="pl-v">frequency</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>batch<span class="pl-pds">'</span></span>, <span class="pl-v">mode</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>asynchronous<span class="pl-pds">'</span></span>, <span class="pl-v">num_workers</span><span class="pl-k">=</span><span class="pl-c1">2</span>,
-        <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">0</span>, <span class="pl-v">validation_split</span><span class="pl-k">=</span><span class="pl-c1">0.1</span>, <span class="pl-v">categorical</span><span class="pl-k">=</span><span class="pl-c1">True</span>, <span class="pl-v">nb_classes</span><span class="pl-k">=</span>nb_classes)
+<p>Fitting an estimator results in a SparkML transformer, which we can use for predictions and other evaluations by 
+calling the transform method on it.</p>
+<pre><code class="python">prediction = fitted_model.transform(test_df)
+pnl = prediction.select(&quot;label&quot;, &quot;prediction&quot;)
+pnl.show(100)
 
-fitted_model <span class="pl-k">=</span> estimator.fit(df)</pre></div>
+prediction_and_label= pnl.rdd.map(lambda row: (row.label, row.prediction))
+metrics = MulticlassMetrics(prediction_and_label)
+print(metrics.precision())
+print(metrics.recall())
+</code></pre>
 
-<p>Fitting an estimator results in a SparkML transformer, which we can use for predictions and other evaluations by calling the transform method on it.</p>
+<h2 id="distributed-hyper-parameter-optimization">Distributed hyper-parameter optimization</h2>
+<p>Hyper-parameter optimization with elephas is based on <a href="https://github.com/maxpumperla/hyperas">hyperas</a>, a convenience 
+wrapper for hyperopt and keras. Each Spark worker executes a number of trials, the results get collected and the best 
+model is returned. As the distributed mode in hyperopt (using MongoDB), is somewhat difficult to configure and error 
+prone at the time of writing, we chose to implement parallelization ourselves. Right now, the only available 
+optimization algorithm is random search.</p>
+<p>The first part of this example is more or less directly taken from the hyperas documentation. We define data and model 
+as functions, hyper-parameter ranges are defined through braces. See the hyperas documentation for more on how 
+this works.</p>
+<pre><code class="python">from __future__ import print_function
+from hyperopt import STATUS_OK
+from hyperas.distributions import choice, uniform
 
-<div class="highlight highlight-source-python"><pre>prediction <span class="pl-k">=</span> fitted_model.transform(test_df)
-pnl <span class="pl-k">=</span> prediction.select(<span class="pl-s"><span class="pl-pds">"</span>label<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>prediction<span class="pl-pds">"</span></span>)
-pnl.show(<span class="pl-c1">100</span>)
-
-prediction_and_label<span class="pl-k">=</span> pnl.map(<span class="pl-k">lambda</span> <span class="pl-smi">row</span>: (row.label, row.prediction))
-metrics <span class="pl-k">=</span> MulticlassMetrics(prediction_and_label)
-<span class="pl-c1">print</span>(metrics.precision())
-<span class="pl-c1">print</span>(metrics.recall())</pre></div>
-
-<h2>
-<a id="usage-of-data-parallel-models" class="anchor" href="#usage-of-data-parallel-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage of data-parallel models</h2>
-
-<p>In the first example above we have seen that an elephas model is instantiated like this</p>
-
-<div class="highlight highlight-source-python"><pre>spark_model <span class="pl-k">=</span> SparkModel(sc,model, <span class="pl-v">optimizer</span><span class="pl-k">=</span>adagrad, <span class="pl-v">frequency</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>epoch<span class="pl-pds">'</span></span>, <span class="pl-v">mode</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>asynchronous<span class="pl-pds">'</span></span>, <span class="pl-v">num_workers</span><span class="pl-k">=</span><span class="pl-c1">2</span>)</pre></div>
-
-<p>So, apart from the canonical Spark context and Keras model, Elephas models have four parameters to tune and we will describe each of them next.</p>
-
-<h3>
-<a id="model-updates-optimizers" class="anchor" href="#model-updates-optimizers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Model updates (optimizers)</h3>
-
-<p><code>optimizer</code>: The optimizers module in elephas is an adaption of the same module in keras, i.e. it provides the user with the following list of optimizers:</p>
-
-<ul>
-<li><code>SGD</code></li>
-<li><code>RMSprop</code></li>
-<li><code>Adagrad</code></li>
-<li><code>Adadelta</code></li>
-<li><code>Adam</code></li>
-</ul>
-
-<p>Once constructed, each of these can be passed to the <em>optimizer</em> parameter of the model. Updates in keras are computed with the help of theano, so most of the data structures in keras optimizers stem from theano. In elephas, gradients have already been computed by the respective workers, so it makes sense to entirely work with numpy arrays internally.</p>
-
-<p>Note that in order to set up an elephas model, you have to specify two optimizers, one for elephas and one for the underlying keras model. Individual workers produce updates according to keras optimizers and the "master" model on the driver uses elephas optimizers to aggregate them. For starters, we recommend keras models with SGD and elephas models with Adagrad or Adadelta.</p>
-
-<h3>
-<a id="update-frequency" class="anchor" href="#update-frequency" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Update frequency</h3>
-
-<p><code>frequency</code>: The user can decide how often updates are passed to the master model by controlling the <em>frequency</em> parameter. To update every batch, choose 'batch' and to update only after every epoch, choose 'epoch'.</p>
-
-<h3>
-<a id="update-mode" class="anchor" href="#update-mode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Update mode</h3>
-
-<p><code>mode</code>: Currently, there's three different modes available in elephas, each corresponding to a different heuristic or parallelization scheme adopted, which is controlled by the <em>mode</em> parameter. The default property is 'asynchronous'.</p>
-
-<h4>
-<a id="asynchronous-updates-with-read-and-write-locks-modeasynchronous" class="anchor" href="#asynchronous-updates-with-read-and-write-locks-modeasynchronous" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Asynchronous updates with read and write locks (<code>mode='asynchronous'</code>)</h4>
-
-<p>This mode implements the algorithm described as <em>downpour</em> in [1], i.e. each worker can send updates whenever they are ready. The master model makes sure that no update gets lost, i.e. multiple updates get applied at the "same" time,  by locking the master parameters while reading and writing parameters. This idea has been used in Google's DistBelief framework.</p>
-
-<h4>
-<a id="asynchronous-updates-without-locks-modehogwild" class="anchor" href="#asynchronous-updates-without-locks-modehogwild" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Asynchronous updates without locks (<code>mode='hogwild'</code>)</h4>
-
-<p>Essentially the same procedure as above, but without requiring the locks. This heuristic assumes that we still fare well enough, even if we loose an update here or there. Updating parameters lock-free in a non-distributed setting for SGD goes by the name 'Hogwild!' [2], it's distributed extension is called 'Dogwild!' [3].  </p>
-
-<h4>
-<a id="synchronous-updates-modesynchronous" class="anchor" href="#synchronous-updates-modesynchronous" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Synchronous updates (<code>mode='synchronous'</code>)</h4>
-
-<p>In this mode each worker sends a new batch of parameter updates at the same time, which are then processed on the master. Accordingly, this algorithm is sometimes called <em>batch synchronous parallel</em> or just BSP.</p>
-
-<h3>
-<a id="degree-of-parallelization-number-of-workers" class="anchor" href="#degree-of-parallelization-number-of-workers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Degree of parallelization (number of workers)</h3>
-
-<p><code>num_workers</code>: Lastly, the degree to which we parallelize our training data is controlled by the parameter <em>num_workers</em>.</p>
-
-<h2>
-<a id="distributed-hyper-parameter-optimization" class="anchor" href="#distributed-hyper-parameter-optimization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Distributed hyper-parameter optimization</h2>
-
-<p>Hyper-parameter optimization with elephas is based on <a href="https://github.com/maxpumperla/hyperas">hyperas</a>, a convenience wrapper for hyperopt and keras. Make sure to have at least version <code>0.1.2</code> of hyperas installed. Each Spark worker executes a number of trials, the results get collected and the best model is returned. As the distributed mode in hyperopt (using MongoDB), is somewhat difficult to configure and error prone at the time of writing, we chose to implement parallelization ourselves. Right now, the only available optimization algorithm is random search.</p>
-
-<p>The first part of this example is more or less directly taken from the hyperas documentation. We define data and model as functions, hyper-parameter ranges are defined through braces. See the hyperas documentation for more on how this works.</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> __future__ <span class="pl-k">import</span> print_function
-<span class="pl-k">from</span> hyperopt <span class="pl-k">import</span> Trials, <span class="pl-c1">STATUS_OK</span>, tpe
-<span class="pl-k">from</span> hyperas.distributions <span class="pl-k">import</span> choice, uniform
-
-<span class="pl-k">def</span> <span class="pl-en">data</span>():
-    <span class="pl-s"><span class="pl-pds">'''</span></span>
-<span class="pl-s">    Data providing function:</span>
-<span class="pl-s"></span>
-<span class="pl-s">    Make sure to have every relevant import statement included here and return data as</span>
-<span class="pl-s">    used in model function below. This function is separated from model() so that hyperopt</span>
-<span class="pl-s">    won't reload data for each evaluation run.</span>
-<span class="pl-s">    <span class="pl-pds">'''</span></span>
-    <span class="pl-k">from</span> keras.datasets <span class="pl-k">import</span> mnist
-    <span class="pl-k">from</span> keras.utils <span class="pl-k">import</span> np_utils
-    (<span class="pl-c1">X_train</span>, y_train), (<span class="pl-c1">X_test</span>, y_test) <span class="pl-k">=</span> mnist.load_data()
-    <span class="pl-c1">X_train</span> <span class="pl-k">=</span> <span class="pl-c1">X_train</span>.reshape(<span class="pl-c1">60000</span>, <span class="pl-c1">784</span>)
-    <span class="pl-c1">X_test</span> <span class="pl-k">=</span> <span class="pl-c1">X_test</span>.reshape(<span class="pl-c1">10000</span>, <span class="pl-c1">784</span>)
-    <span class="pl-c1">X_train</span> <span class="pl-k">=</span> <span class="pl-c1">X_train</span>.astype(<span class="pl-s"><span class="pl-pds">'</span>float32<span class="pl-pds">'</span></span>)
-    <span class="pl-c1">X_test</span> <span class="pl-k">=</span> <span class="pl-c1">X_test</span>.astype(<span class="pl-s"><span class="pl-pds">'</span>float32<span class="pl-pds">'</span></span>)
-    <span class="pl-c1">X_train</span> <span class="pl-k">/=</span> <span class="pl-c1">255</span>
-    <span class="pl-c1">X_test</span> <span class="pl-k">/=</span> <span class="pl-c1">255</span>
-    nb_classes <span class="pl-k">=</span> <span class="pl-c1">10</span>
-    <span class="pl-c1">Y_train</span> <span class="pl-k">=</span> np_utils.to_categorical(y_train, nb_classes)
-    <span class="pl-c1">Y_test</span> <span class="pl-k">=</span> np_utils.to_categorical(y_test, nb_classes)
-    <span class="pl-k">return</span> <span class="pl-c1">X_train</span>, <span class="pl-c1">Y_train</span>, <span class="pl-c1">X_test</span>, <span class="pl-c1">Y_test</span>
+def data():
+    from keras.datasets import mnist
+    from keras.utils import np_utils
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    x_train = x_train.reshape(60000, 784)
+    x_test = x_test.reshape(10000, 784)
+    x_train = x_train.astype('float32')
+    x_test = x_test.astype('float32')
+    x_train /= 255
+    x_test /= 255
+    nb_classes = 10
+    y_train = np_utils.to_categorical(y_train, nb_classes)
+    y_test = np_utils.to_categorical(y_test, nb_classes)
+    return x_train, y_train, x_test, y_test
 
 
-<span class="pl-k">def</span> <span class="pl-en">model</span>(<span class="pl-smi">X_train</span>, <span class="pl-smi">Y_train</span>, <span class="pl-smi">X_test</span>, <span class="pl-smi">Y_test</span>):
-    <span class="pl-s"><span class="pl-pds">'''</span></span>
-<span class="pl-s">    Model providing function:</span>
-<span class="pl-s"></span>
-<span class="pl-s">    Create Keras model with double curly brackets dropped-in as needed.</span>
-<span class="pl-s">    Return value has to be a valid python dictionary with two customary keys:</span>
-<span class="pl-s">        - loss: Specify a numeric evaluation metric to be minimized</span>
-<span class="pl-s">        - status: Just use STATUS_OK and see hyperopt documentation if not feasible</span>
-<span class="pl-s">    The last one is optional, though recommended, namely:</span>
-<span class="pl-s">        - model: specify the model just created so that we can later use it again.</span>
-<span class="pl-s">    <span class="pl-pds">'''</span></span>
-    <span class="pl-k">from</span> keras.models <span class="pl-k">import</span> Sequential
-    <span class="pl-k">from</span> keras.layers.core <span class="pl-k">import</span> Dense, Dropout, Activation
-    <span class="pl-k">from</span> keras.optimizers <span class="pl-k">import</span> RMSprop
+def model(x_train, y_train, x_test, y_test):
+    from keras.models import Sequential
+    from keras.layers.core import Dense, Dropout, Activation
+    from keras.optimizers import RMSprop
 
-    model <span class="pl-k">=</span> Sequential()
-    model.add(Dense(<span class="pl-c1">512</span>, <span class="pl-v">input_shape</span><span class="pl-k">=</span>(<span class="pl-c1">784</span>,)))
-    model.add(Activation(<span class="pl-s"><span class="pl-pds">'</span>relu<span class="pl-pds">'</span></span>))
-    model.add(Dropout({{uniform(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>)}}))
-    model.add(Dense({{choice([<span class="pl-c1">256</span>, <span class="pl-c1">512</span>, <span class="pl-c1">1024</span>])}}))
-    model.add(Activation(<span class="pl-s"><span class="pl-pds">'</span>relu<span class="pl-pds">'</span></span>))
-    model.add(Dropout({{uniform(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>)}}))
-    model.add(Dense(<span class="pl-c1">10</span>))
-    model.add(Activation(<span class="pl-s"><span class="pl-pds">'</span>softmax<span class="pl-pds">'</span></span>))
+    model = Sequential()
+    model.add(Dense(512, input_shape=(784,)))
+    model.add(Activation('relu'))
+    model.add(Dropout({{uniform(0, 1)}}))
+    model.add(Dense({{choice([256, 512, 1024])}}))
+    model.add(Activation('relu'))
+    model.add(Dropout({{uniform(0, 1)}}))
+    model.add(Dense(10))
+    model.add(Activation('softmax'))
 
-    rms <span class="pl-k">=</span> RMSprop()
-    model.compile(<span class="pl-v">loss</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>categorical_crossentropy<span class="pl-pds">'</span></span>, <span class="pl-v">optimizer</span><span class="pl-k">=</span>rms)
+    rms = RMSprop()
+    model.compile(loss='categorical_crossentropy', optimizer=rms)
 
-    model.fit(<span class="pl-c1">X_train</span>, <span class="pl-c1">Y_train</span>,
-              <span class="pl-v">batch_size</span><span class="pl-k">=</span>{{choice([<span class="pl-c1">64</span>, <span class="pl-c1">128</span>])}},
-              <span class="pl-v">nb_epoch</span><span class="pl-k">=</span><span class="pl-c1">1</span>,
-              <span class="pl-v">show_accuracy</span><span class="pl-k">=</span><span class="pl-c1">True</span>,
-              <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">2</span>,
-              <span class="pl-v">validation_data</span><span class="pl-k">=</span>(<span class="pl-c1">X_test</span>, <span class="pl-c1">Y_test</span>))
-    score, acc <span class="pl-k">=</span> model.evaluate(<span class="pl-c1">X_test</span>, <span class="pl-c1">Y_test</span>, <span class="pl-v">show_accuracy</span><span class="pl-k">=</span><span class="pl-c1">True</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">0</span>)
-    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">'</span>Test accuracy:<span class="pl-pds">'</span></span>, acc)
-    <span class="pl-k">return</span> {<span class="pl-s"><span class="pl-pds">'</span>loss<span class="pl-pds">'</span></span>: <span class="pl-k">-</span>acc, <span class="pl-s"><span class="pl-pds">'</span>status<span class="pl-pds">'</span></span>: <span class="pl-c1">STATUS_OK</span>, <span class="pl-s"><span class="pl-pds">'</span>model<span class="pl-pds">'</span></span>: model.to_yaml(), <span class="pl-s"><span class="pl-pds">'</span>weights<span class="pl-pds">'</span></span>: pickle.dumps(model.get_weights())}</pre></div>
+    model.fit(x_train, y_train,
+              batch_size={{choice([64, 128])}},
+              nb_epoch=1,
+              show_accuracy=True,
+              verbose=2,
+              validation_data=(x_test, y_test))
+    score, acc = model.evaluate(x_test, y_test, show_accuracy=True, verbose=0)
+    print('Test accuracy:', acc)
+    return {'loss': -acc, 'status': STATUS_OK, 'model': model.to_yaml()}
+</code></pre>
 
 <p>Once the basic setup is defined, running the minimization is done in just a few lines of code:</p>
+<pre><code class="python">from elephas.hyperparam import HyperParamModel
+from pyspark import SparkContext, SparkConf
 
-<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> hyperas <span class="pl-k">import</span> optim
-<span class="pl-k">from</span> elephas.hyperparam <span class="pl-k">import</span> HyperParamModel
-<span class="pl-k">from</span> pyspark <span class="pl-k">import</span> SparkContext, SparkConf
+# Create Spark context
+conf = SparkConf().setAppName('Elephas_Hyperparameter_Optimization').setMaster('local[8]')
+sc = SparkContext(conf=conf)
 
-<span class="pl-c"># Create Spark context</span>
-conf <span class="pl-k">=</span> SparkConf().setAppName(<span class="pl-s"><span class="pl-pds">'</span>Elephas_Hyperparameter_Optimization<span class="pl-pds">'</span></span>).setMaster(<span class="pl-s"><span class="pl-pds">'</span>local[8]<span class="pl-pds">'</span></span>)
-sc <span class="pl-k">=</span> SparkContext(<span class="pl-v">conf</span><span class="pl-k">=</span>conf)
+# Define hyper-parameter model and run optimization
+hyperparam_model = HyperParamModel(sc)
+hyperparam_model.minimize(model=model, data=data, max_evals=5)
+</code></pre>
 
-<span class="pl-c"># Define hyper-parameter model and run optimization</span>
-hyperparam_model <span class="pl-k">=</span> HyperParamModel(sc)
-hyperparam_model.minimize(<span class="pl-v">model</span><span class="pl-k">=</span>model, <span class="pl-v">data</span><span class="pl-k">=</span>data, <span class="pl-v">max_evals</span><span class="pl-k">=</span><span class="pl-c1">5</span>)</pre></div>
-
-<h2>
-<a id="distributed-training-of-ensemble-models" class="anchor" href="#distributed-training-of-ensemble-models" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Distributed training of ensemble models</h2>
-
-<p>Building on the last section, it is possible to train ensemble models with elephas by means of running hyper-parameter optimization on large search spaces and defining a resulting voting classifier on the top-n performing models. With <code>data</code> and <code>model</code>` defined as above, this is a simple as running</p>
-
-<div class="highlight highlight-source-python"><pre>result <span class="pl-k">=</span> hyperparam_model.best_ensemble(<span class="pl-v">nb_ensemble_models</span><span class="pl-k">=</span><span class="pl-c1">10</span>, <span class="pl-v">model</span><span class="pl-k">=</span>model, <span class="pl-v">data</span><span class="pl-k">=</span>data, <span class="pl-v">max_evals</span><span class="pl-k">=</span><span class="pl-c1">5</span>)</pre></div>
+<h2 id="distributed-training-of-ensemble-models">Distributed training of ensemble models</h2>
+<p>Building on the last section, it is possible to train ensemble models with elephas by means of running hyper-parameter 
+optimization on large search spaces and defining a resulting voting classifier on the top-n performing models. 
+With <code>data</code> and <code>model</code> defined as above, this is a simple as running</p>
+<pre><code class="python">result = hyperparam_model.best_ensemble(nb_ensemble_models=10, model=model, data=data, max_evals=5)
+</code></pre>
 
 <p>In this example an ensemble of 10 models is built, based on optimization of at most 5 runs on each of the Spark workers.</p>
-
-<h2>
-<a id="discussion" class="anchor" href="#discussion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Discussion</h2>
-
-<p>Premature parallelization may not be the root of all evil, but it may not always be the best idea to do so. Keep in mind that more workers mean less data per worker and parallelizing a model is not an excuse for actual learning. So, if you can perfectly well fit your data into memory <em>and</em> you're happy with training speed of the model consider just using keras.</p>
-
-<p>One exception to this rule may be that you're already working within the Spark ecosystem and want to leverage what's there. The above SparkML example shows how to use evaluation modules from Spark and maybe you wish to further process the outcome of an elephas model down the road. In this case, we recommend to use elephas as a simple wrapper by setting num_workers=1.</p>
-
-<p>Note that right now elephas restricts itself to data-parallel algorithms for two reasons. First, Spark simply makes it very easy to distribute data. Second, neither Spark nor Theano make it particularly easy to split up the actual model in parts, thus making model-parallelism practically impossible to realize.</p>
-
-<p>Having said all that, we hope you learn to appreciate elephas as a pretty easy to setup and use playground for data-parallel deep-learning algorithms.</p>
-
-<h2>
-<a id="future-work--contributions" class="anchor" href="#future-work--contributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Future work &amp; contributions</h2>
-
-<p>Constructive feedback and pull requests for elephas are very welcome. Here's a few things we're having in mind for future development</p>
-
-<ul>
-<li>Tighter Spark ML integration. Pipelines do not work yet.</li>
-<li>Benchmarks for training speed and accuracy.</li>
-<li>Some real-world tests on EC2 instances with large data sets like imagenet.</li>
-</ul>
-
-<h2>
-<a id="literature" class="anchor" href="#literature" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Literature</h2>
-
+<h2 id="discussion">Discussion</h2>
+<p>Premature parallelization may not be the root of all evil, but it may not always be the best idea to do so. Keep in 
+mind that more workers mean less data per worker and parallelizing a model is not an excuse for actual learning. 
+So, if you can perfectly well fit your data into memory <em>and</em> you're happy with training speed of the model consider 
+just using keras.</p>
+<p>One exception to this rule may be that you're already working within the Spark ecosystem and want to leverage what's 
+there. The above SparkML example shows how to use evaluation modules from Spark and maybe you wish to further process 
+the outcome of an elephas model down the road. In this case, we recommend to use elephas as a simple wrapper by setting 
+num_workers=1.</p>
+<p>Note that right now elephas restricts itself to data-parallel algorithms for two reasons. First, Spark simply makes it 
+very easy to distribute data. Second, neither Spark nor Theano make it particularly easy to split up the actual model 
+in parts, thus making model-parallelism practically impossible to realize.</p>
+<p>Having said all that, we hope you learn to appreciate elephas as a pretty easy to setup and use playground for 
+data-parallel deep-learning algorithms.</p>
+<h2 id="literature">Literature</h2>
 <p>[1] J. Dean, G.S. Corrado, R. Monga, K. Chen, M. Devin, QV. Le, MZ. Mao, M’A. Ranzato, A. Senior, P. Tucker, K. Yang, and AY. Ng. <a href="http://research.google.com/archive/large_deep_networks_nips2012.html">Large Scale Distributed Deep Networks</a>.</p>
-
 <p>[2] F. Niu, B. Recht, C. Re, S.J. Wright <a href="http://arxiv.org/abs/1106.5730">HOGWILD!: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent</a></p>
+<p>[3] C. Noel, S. Osindero. <a href="http://stanford.edu/~rezab/nips2014workshop/submits/dogwild.pdf">Dogwild! — Distributed Hogwild for CPU &amp; GPU</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="why-use-elephas/" class="btn btn-neutral float-right" title="Why use Elephas">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
 
-<p>[3] C. Noel, S. Osindero. <a href="http://stanford.edu/%7Erezab/nips2014workshop/submits/dogwild.pdf">Dogwild! — Distributed Hogwild for CPU &amp; GPU</a></p>
+  <hr/>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/maxpumperla/elephas">Elephas</a> is maintained by <a href="https://github.com/maxpumperla">maxpumperla</a>.</span>
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
 
     </section>
 
-  
-  </body>
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="http://github.com/maxpumperla/elephas/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="why-use-elephas/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
 </html>
+
+<!--
+MkDocs version : 1.0.1
+Build Date UTC : 2018-08-21 15:09:49
+-->
