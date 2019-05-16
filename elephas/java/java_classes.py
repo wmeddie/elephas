@@ -1,28 +1,25 @@
 
 import os
 
-try:
-    from pyspark.context import SparkContext
-    sc = SparkContext._activeSparkContext
-    if sc is None:
-        raise Exception()
+#try:
+from pyspark.context import SparkContext
+def autoclass(cls_name):
+    names = cls_name.split(".")
 
-    def autoclass(cls_name):
-        names = cls_name.split(".")
+    last = SparkContext._activeSparkContext._jvm
 
-        last = sc._jvm
-        for name in names:
-            last = last.__getattr__(name)
+    for name in names:
+        last = last.__getattr__(name)
 
-        return last
-except:
-    import pydl4j
-
-    pydl4j.validate_jars()
-    pydl4j.add_classpath(os.getcwd())
-
-    # -------------JVM starts here-------------
-    from jnius import autoclass
+    return last
+#except:
+#    import pydl4j
+#
+#    pydl4j.validate_jars()
+#    pydl4j.add_classpath(os.getcwd())
+#
+#    # -------------JVM starts here-------------
+#    from jnius import autoclass
 
 # Java
 File = autoclass('java.io.File')
