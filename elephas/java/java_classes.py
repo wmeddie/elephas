@@ -23,9 +23,9 @@ def _jnisclass(cls, *args, **kwargs):
 class JvmMetaClass(type):
     def __call__(cls, *args, **kwargs):
         try:
-            _py4jclass(cls, *args, **kwargs)
+            return _py4jclass(cls, *args, **kwargs)
         except:
-            _jnisclass(cls, *args, **kwargs)
+            return _jnisclass(cls, *args, **kwargs)
 
 # Java
 class File(object):
