@@ -2,30 +2,40 @@
 import os
 
 
-def _py4jclass(cls, *args, **kwargs):
+def _py4jclass(cls):
     from pyspark.context import SparkContext
     sc = SparkContext._active_spark_context
     names = cls.jvm_cls_name.split('.')
     last = sc._jvm
     for name in names:
         last = getattr(last, name)
-    return last(*args, **kwargs)
+    return last
 
-def _jnisclass(cls, *args, **kwargs):
+def _jniusclass(cls):
     import pydl4j
 
     pydl4j.validate_jars()
     pydl4j.add_classpath(os.getcwd())
 
     from jnius import autoclass
-    return autoclass(cls.jvm_cls_name)(*args, **kwargs)
+    return autoclass(cls.jvm_cls_name)
 
 class JvmMetaClass(type):
     def __call__(cls, *args, **kwargs):
         try:
-            return _py4jclass(cls, *args, **kwargs)
+            return _py4jclass(cls)(*args, **kwargs)
         except:
-            return _jnisclass(cls, *args, **kwargs)
+            return _jniusclass(cls)(*args, **kwargs)
+
+    def __getattr__(cls, key):
+        if key == 'get_class':
+            try:
+                _py4jclass(cls)
+            except:
+                _jniusclass(cls)
+                raise Exception("Unable to get jvm class.")
+        else:
+            raise AttributeError(key)
 
 # Java
 class File(object):
@@ -128,11 +138,6 @@ class DataTypeUtil(object):
 class NativeOpsHolder(object):
     __metaclass__ = JvmMetaClass
     jvm_cls_name = 'org.nd4j.nativeblas.NativeOpsHolder'
-
-
-    @classmethod
-    def get_class(cls):
-        return SparkContext._active_spark_context._jvm.org.nd4j.nativeblas.NativeOpsHolder
 
 class DataSet(object):
     __metaclass__ = JvmMetaClass

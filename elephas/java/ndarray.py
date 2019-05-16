@@ -16,16 +16,16 @@ def set_context_dtype(dtype):
     # Arguments
         dtype: 'float' or 'double'
     """
-    dtype = DataTypeUtil.getDtypeFromContext(dtype)
-    DataTypeUtil.setDTypeForContext(dtype)
+    dtype = DataTypeUtil.get_class().getDtypeFromContext(dtype)
+    DataTypeUtil.get_class().setDTypeForContext(dtype)
 
 
 def get_context_dtype():
     """
     Returns the nd4j dtype
     """
-    dtype = DataTypeUtil.getDtypeFromContext()
-    return DataTypeUtil.getDTypeForName(dtype)
+    dtype = DataTypeUtil.get_class().getDtypeFromContext()
+    return DataTypeUtil.get_class().getDTypeForName(dtype)
 
 
 def get_nd4j_dtype(np_dtype):
@@ -111,7 +111,7 @@ def _from_numpy(np_array):
         np.float32: FloatPointer,
     }
     pointer = mapping[required_dtype](pointer)
-    buff = Nd4j.createBuffer(pointer, size)
+    buff = Nd4j.get_class().createBuffer(pointer, size)
     assert buff.address() == pointer_address
     _refs.append(buff)
     # Get the strides
@@ -129,7 +129,7 @@ def _from_numpy(np_array):
     # Finally, shape:
     shape = np_array.shape
 
-    nd4j_array = Nd4j.create(buff, shape, strides, 0)
+    nd4j_array = Nd4j.get_class().create(buff, shape, strides, 0)
     assert buff.address() == nd4j_array.data().address()
     return nd4j_array
 
