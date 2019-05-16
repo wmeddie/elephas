@@ -6,7 +6,7 @@ from pyspark.context import SparkContext
 def autoclass(cls_name):
     names = cls_name.split(".")
 
-    last = SparkContext._activeSparkContext._jvm
+    last = SparkContext._active_spark_context._jvm
 
     for name in names:
         last = last.__getattr__(name)
