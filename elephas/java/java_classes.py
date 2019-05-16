@@ -129,6 +129,11 @@ class NativeOpsHolder(object):
     __metaclass__ = JvmMetaClass
     jvm_cls_name = 'org.nd4j.nativeblas.NativeOpsHolder'
 
+
+    @classmethod
+    def get_class(cls):
+        return SparkContext._active_spark_context._jvm.org.nd4j.nativeblas.NativeOpsHolder
+
 class DataSet(object):
     __metaclass__ = JvmMetaClass
     jvm_cls_name = 'org.nd4j.linalg.dataset.DataSet'

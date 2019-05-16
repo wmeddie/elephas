@@ -4,7 +4,7 @@ import ctypes
 
 
 # Java instance initializations
-native_ops = NativeOpsHolder.getInstance().getDeviceNativeOps()
+native_ops = NativeOpsHolder.get_class().getInstance().getDeviceNativeOps()
 
 
 # DATA TYPE MANAGEMENT
