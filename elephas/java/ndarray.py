@@ -4,7 +4,8 @@ import ctypes
 
 
 # Java instance initializations
-native_ops = NativeOpsHolder.get_class().getInstance().getDeviceNativeOps()
+def get_native_ops():
+    return NativeOpsHolder.get_class().getInstance().getDeviceNativeOps()
 
 
 # DATA TYPE MANAGEMENT
@@ -103,7 +104,7 @@ def _from_numpy(np_array):
     # we need a pointer to the first element and the size.
     pointer_address, _ = np_array.__array_interface__['data']
     _refs.append(np_array)
-    pointer = native_ops.pointerForAddress(pointer_address)
+    pointer = get_native_ops().pointerForAddress(pointer_address)
     size = np_array.size
     mapping = {
         np.float64: DoublePointer,
