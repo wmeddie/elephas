@@ -1,12 +1,14 @@
 
 import os
+import elephas
 
 #try:
 from pyspark.context import SparkContext
 def autoclass(cls_name):
-    global sc
 
     names = cls_name.split(".")
+
+    sc = elephas.sc
 
     if sc is None:
         sc = SparkContext._active_spark_context
