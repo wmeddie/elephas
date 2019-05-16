@@ -32,8 +32,10 @@ class JvmMetaClass(type):
             try:
                 return _py4jclass(cls)
             except:
-                return _jniusclass(cls)
-                raise Exception("Unable to get jvm class.")
+                try:
+                    return _jniusclass(cls)
+                except:
+                    raise Exception("Unable to get jvm class.")
         else:
             raise AttributeError(key)
 

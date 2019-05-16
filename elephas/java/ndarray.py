@@ -24,6 +24,10 @@ def get_context_dtype():
     """
     Returns the nd4j dtype
     """
+
+    dtype = DataTypeUtil.get_class().getDtypeFromContext('double')
+    DataTypeUtil.get_class().setDTypeForContext(dtype)
+
     dtype = DataTypeUtil.get_class().getDtypeFromContext()
     return DataTypeUtil.get_class().getDTypeForName(dtype)
 
