@@ -30,9 +30,9 @@ class JvmMetaClass(type):
     def __getattr__(cls, key):
         if key == 'get_class':
             try:
-                _py4jclass(cls)
+                return _py4jclass(cls)
             except:
-                _jniusclass(cls)
+                return _jniusclass(cls)
                 raise Exception("Unable to get jvm class.")
         else:
             raise AttributeError(key)
