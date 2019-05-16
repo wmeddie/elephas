@@ -1,8 +1,8 @@
 from .spark_model import SparkModel
-try:
-    from elephas.java import java_classes, adapter
-except:
-    raise Exception("Warning: java classes couldn't be loaded.")
+#try:
+from elephas.java import java_classes, adapter
+#except:
+#    raise Exception("Warning: java classes couldn't be loaded.")
 
 
 class ParameterAveragingModel(SparkModel):
