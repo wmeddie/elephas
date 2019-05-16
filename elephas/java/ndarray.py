@@ -70,7 +70,7 @@ def get_np_dtype(nd4j_dtype):
     return np_dtype
 
 
-set_context_dtype('double')
+#set_context_dtype('double')
 
 
 _refs = []
