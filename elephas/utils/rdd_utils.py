@@ -4,11 +4,11 @@ from pyspark.mllib.regression import LabeledPoint
 import numpy as np
 
 from ..mllib.adapter import to_vector, from_vector
-try:
-    from elephas.java import java_classes
-    from elephas.java.ndarray import ndarray
-except Exception:
-    print("WARNING")
+#try:
+from elephas.java import java_classes
+from elephas.java.ndarray import ndarray
+#except Exception:
+#    print("WARNING")
 
 from six.moves import zip
 
