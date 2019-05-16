@@ -4,9 +4,14 @@ import os
 #try:
 from pyspark.context import SparkContext
 def autoclass(cls_name):
+    global sc
+
     names = cls_name.split(".")
 
-    last = SparkContext._active_spark_context._jvm
+    if sc is None:
+        sc = SparkContext._active_spark_context
+
+    last = sc._jvm
 
     for name in names:
         last = last.__getattr__(name)
