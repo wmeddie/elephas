@@ -5,7 +5,7 @@ import ctypes
 
 # Java instance initializations
 def get_native_ops():
-    return NativeOpsHolder.get_class().getInstance().getDeviceNativeOps()
+    return NativeOpsHolder.get_class.getInstance().getDeviceNativeOps()
 
 
 # DATA TYPE MANAGEMENT
@@ -16,8 +16,8 @@ def set_context_dtype(dtype):
     # Arguments
         dtype: 'float' or 'double'
     """
-    dtype = DataTypeUtil.get_class().getDtypeFromContext(dtype)
-    DataTypeUtil.get_class().setDTypeForContext(dtype)
+    dtype = DataTypeUtil.get_class.getDtypeFromContext(dtype)
+    DataTypeUtil.get_class.setDTypeForContext(dtype)
 
 
 def get_context_dtype():
@@ -25,11 +25,11 @@ def get_context_dtype():
     Returns the nd4j dtype
     """
 
-    dtype = DataTypeUtil.get_class().getDtypeFromContext('float')
-    DataTypeUtil.get_class().setDTypeForContext(dtype)
+    dtype = DataTypeUtil.get_class.getDtypeFromContext('float')
+    DataTypeUtil.get_class.setDTypeForContext(dtype)
 
-    dtype = DataTypeUtil.get_class().getDtypeFromContext()
-    return DataTypeUtil.get_class().getDTypeForName(dtype)
+    dtype = DataTypeUtil.get_class.getDtypeFromContext()
+    return DataTypeUtil.get_class.getDTypeForName(dtype)
 
 
 def get_nd4j_dtype(np_dtype):
