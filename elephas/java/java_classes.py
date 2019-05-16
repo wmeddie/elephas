@@ -1,70 +1,143 @@
 
 import os
-import elephas
 
-#try:
-from pyspark.context import SparkContext
-def autoclass(cls_name):
 
-    names = cls_name.split(".")
-
-    sc = elephas.sc
-
-    if sc is None:
-        sc = SparkContext._active_spark_context
-
+def _py4jclass(cls, *args, **kwargs):
+    from pyspark.context import SparkContext
+    sc = SparkContext._active_spark_context
+    names = cls.jvm_cls_name.split('.')
     last = sc._jvm
-
     for name in names:
-        last = last.__getattr__(name)
+        last = getattr(last, name)
+    return last(*args, **kwargs)
 
-    return last
-#except:
-#    import pydl4j
-#
-#    pydl4j.validate_jars()
-#    pydl4j.add_classpath(os.getcwd())
-#
-#    # -------------JVM starts here-------------
-#    from jnius import autoclass
+def _jnisclass(cls, *args, **kwargs):
+    import pydl4j
+
+    pydl4j.validate_jars()
+    pydl4j.add_classpath(os.getcwd())
+
+    from jnius import autoclass
+    return autoclass(cls.jvm_cls_name)(*args, **kwargs)
+
+class JvmMetaClass(type):
+    def __call__(cls, *args, **kwargs):
+        try:
+            _py4jclass(cls, *args, **kwargs)
+        except:
+            _jnisclass(cls, *args, **kwargs)
 
 # Java
-File = autoclass('java.io.File')
-ClassLoader = autoclass('java.lang.ClassLoader')
-ArrayList = autoclass('java.util.ArrayList')
-Arrays = autoclass('java.util.Arrays')
-String = autoclass('java.lang.String')
+class File(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.io.File'
 
-System = autoclass('java.lang.System')
-Integer = autoclass('java.lang.Integer')
-Float = autoclass('java.lang.Float')
-Double = autoclass('java.lang.Double')
+class ClassLoader(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.lang.ClassLoader'
+
+class ArrayList(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.util.ArrayList'
+
+class Arrays(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.util.Arrays'
+
+class String(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.lang.String'
+
+class System(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.lang.System'
+
+class Integer(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.lang.Integer'
+
+class Float(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.lang.Float'
+
+class Double(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'java.lang.Double'
 
 # JavaCPP
-DoublePointer = autoclass('org.bytedeco.javacpp.DoublePointer')
-FloatPointer = autoclass('org.bytedeco.javacpp.FloatPointer')
-IntPointer = autoclass('org.bytedeco.javacpp.IntPointer')
+class DoublePointer(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.bytedeco.javacpp.DoublePointer'
+
+class FloatPointer(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.bytedeco.javacpp.FloatPointer'
+
+class IntPointer(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.bytedeco.javacpp.IntPointer'
+
 
 # Spark
-SparkContext = autoclass('org.apache.spark.SparkContext')
-JavaSparkContext = autoclass('org.apache.spark.api.java.JavaSparkContext')
-SparkConf = autoclass('org.apache.spark.SparkConf')
+class SparkContext(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.apache.spark.SparkContext'
+
+class JavaSparkContext(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.apache.spark.api.java.JavaSparkContext'
+
+class SparkConf(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.apache.spark.SparkConf'
+
 
 # ND4J
-Nd4j = autoclass('org.nd4j.linalg.factory.Nd4j')
-INDArray = autoclass('org.nd4j.linalg.api.ndarray.INDArray')
-Transforms = autoclass('org.nd4j.linalg.ops.transforms.Transforms')
-NDArrayIndex = autoclass('org.nd4j.linalg.indexing.NDArrayIndex')
-DataBuffer = autoclass('org.nd4j.linalg.api.buffer.DataBuffer')
-Shape = autoclass('org.nd4j.linalg.api.shape.Shape')
-BinarySerde = autoclass('org.nd4j.serde.binary.BinarySerde')
-DataTypeUtil = autoclass('org.nd4j.linalg.api.buffer.util.DataTypeUtil')
-NativeOpsHolder = autoclass('org.nd4j.nativeblas.NativeOpsHolder')
-DataSet = autoclass('org.nd4j.linalg.dataset.DataSet')
+class Nd4j(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.factory.Nd4j'
 
+class INDArray(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.api.ndarray.INDArray'
+
+class Transforms(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.ops.transforms.Transforms'
+
+class NDArrayIndex(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.indexing.NDArrayIndex'
+
+class DataBuffer(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.api.buffer.DataBuffer'
+
+class Shape(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.api.shape.Shape'
+
+class BinarySerde(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.serde.binary.BinarySerde'
+
+class DataTypeUtil(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.api.buffer.util.DataTypeUtil'
+
+class NativeOpsHolder(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.nativeblas.NativeOpsHolder'
+
+class DataSet(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.dataset.DataSet'
 
 # Import
-KerasModelImport = autoclass(
-    'org.deeplearning4j.nn.modelimport.keras.KerasModelImport')
-ElephasModelImport = autoclass(
-    'org.deeplearning4j.spark.parameterserver.modelimport.elephas.ElephasModelImport')
+class KerasModelImport(object):
+    __metaclass_ = JvmMetaClass
+    jvm_cls_name  = 'org.deeplearning4j.nn.modelimport.keras.KerasModelImport'
+
+class ElephasModelImport(object):
+    __metaclass_ = JvmMetaClass
+    jvm_cls_name = 'org.deeplearning4j.spark.parameterserver.modelimport.elephas.ElephasModelImport'
