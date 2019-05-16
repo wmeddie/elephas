@@ -25,6 +25,7 @@ def get_context_dtype():
     Returns the nd4j dtype
     """
 
+
     dtype = DataTypeUtil.get_class.getDtypeFromContext('float')
     DataTypeUtil.get_class.setDTypeForContext(dtype)
 
