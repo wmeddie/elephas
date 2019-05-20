@@ -35,7 +35,7 @@ class JvmMetaClass(type):
                 try:
                     return _jniusclass(cls)
                 except:
-                    raise Exception("Unable to get jvm class.")
+                    raise Exception("Unable to get jvm class: %s" % cls)
         else:
             raise AttributeError(key)
 
