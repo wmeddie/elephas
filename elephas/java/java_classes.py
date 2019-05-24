@@ -28,16 +28,13 @@ class JvmMetaClass(type):
             return _jniusclass(cls)(*args, **kwargs)
 
     def __getattr__(cls, key):
-        if key == 'get_class':
+        try:
+            return getattr(_py4jclass(cls), key)
+        except:
             try:
-                return _py4jclass(cls)
+                return getattr(_jniusclass(cls), key)
             except:
-                try:
-                    return _jniusclass(cls)
-                except:
-                    raise Exception("Unable to get jvm class: %s" % cls.jvm_cls_name)
-        else:
-            raise AttributeError(key)
+                raise Exception("Unable to get jvm class: %s" % cls.jvm_cls_name)
 
 # Java
 class File(object):
