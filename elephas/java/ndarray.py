@@ -149,8 +149,8 @@ def _from_numpy(np_array):
     elem_size = buff.getElementSize()
     assert elem_size == np_array.dtype.itemsize
     strides = np_array.strides
-    strides = [dim / elem_size for dim in strides]
-    shape = np_array.shape
+    strides = ArrayList([dim / elem_size for dim in strides])
+    shape = ArrayList(np_array.shape)
     nd4j_array = Nd4j.create(buff, shape.toArray(), strides.toArray(), long(0))
     assert buff.address() == nd4j_array.data().address()
     return nd4j_array
