@@ -137,6 +137,10 @@ class DataTypeUtil(object):
     __metaclass__ = JvmMetaClass
     jvm_cls_name = 'org.nd4j.linalg.api.buffer.util.DataTypeUtil'
 
+class DataType(object):
+    __metaclass__ = JvmMetaClass
+    jvm_cls_name = 'org.nd4j.linalg.api.buffer.DataType'
+
 class NativeOpsHolder(object):
     __metaclass__ = JvmMetaClass
     jvm_cls_name = 'org.nd4j.nativeblas.NativeOpsHolder'
