@@ -21,24 +21,24 @@ import ctypes
 import warnings
 
 
-native_ops = NativeOpsHolder.getInstance().getDeviceNativeOps()
+native_ops = NativeOpsHolder.get_class.getInstance().getDeviceNativeOps()
 
 
 # DATA TYPE MANAGEMENT
 
 
-DOUBLE = DataType.DOUBLE
-FLOAT = DataType.FLOAT
-HALF = DataType.HALF
-LONG = DataType.LONG
-INT = DataType.INT
-SHORT = DataType.SHORT
-UBYTE = DataType.UBYTE
-BYTE = DataType.BYTE
-BOOL = DataType.BOOL
-UTF8 = DataType.UTF8
-COMPRESSED = DataType.COMPRESSED
-UNKNOWN = DataType.UNKNOWN
+DOUBLE = DataType.get_class.DOUBLE
+FLOAT = DataType.get_class.FLOAT
+HALF = DataType.get_class.HALF
+LONG = DataType.get_class.LONG
+INT = DataType.get_class.INT
+SHORT = DataType.get_class.SHORT
+UBYTE = DataType.get_class.UBYTE
+BYTE = DataType.get_class.BYTE
+BOOL = DataType.get_class.BOOL
+UTF8 = DataType.get_class.UTF8
+COMPRESSED = DataType.get_class.COMPRESSED
+UNKNOWN = DataType.get_class.UNKNOWN
 
 SUPPORTED_JAVA_DTYPES = [
     DOUBLE,
