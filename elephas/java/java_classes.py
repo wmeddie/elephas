@@ -151,9 +151,9 @@ class DataSet(object):
 
 # Import
 class KerasModelImport(object):
-    __metaclass_ = JvmMetaClass
+    __metaclass__ = JvmMetaClass
     jvm_cls_name  = 'org.deeplearning4j.nn.modelimport.keras.KerasModelImport'
 
 class ElephasModelImport(object):
-    __metaclass_ = JvmMetaClass
+    __metaclass__ = JvmMetaClass
     jvm_cls_name = 'org.deeplearning4j.spark.parameterserver.modelimport.elephas.ElephasModelImport'
