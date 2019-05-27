@@ -9,9 +9,9 @@ def to_array(collection, t):
     jtype = None
 
     if t is int:
-        jtype = jgateway.jvm.int
+        jtype = jgateway.jvm.java.lang.Integer
     elif t is long:
-        jtype = jgateway.jvm.long
+        jtype = jgateway.jvm.java.lang.Long
 
     if jtype is not None:
         a = jgateway.new_array(jtype, len(collection))
