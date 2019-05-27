@@ -2,6 +2,8 @@
 import os
 
 def to_array(collection, t):
+    from pyspark.context import SparkContext
+
     sc = SparkContext._active_spark_context
     jgateway = sc._gateway
     jtype = None
@@ -19,6 +21,7 @@ def to_array(collection, t):
 
 def _py4jclass(cls):
     from pyspark.context import SparkContext
+
     sc = SparkContext._active_spark_context
     names = cls.jvm_cls_name.split('.')
     last = sc._jvm
