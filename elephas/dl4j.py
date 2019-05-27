@@ -95,13 +95,15 @@ def dl4j_import(jsc, model_file, keras_model_type):
         try:
             return emi.importElephasSequentialModelAndWeights(
                 jsc, model_file.absolutePath)
-        except:
+        except Exception as e:
             print("Couldn't load Keras model into DL4J")
+            raise e
     elif keras_model_type == "Model":
         try:
             return emi.importElephasModelAndWeights(jsc, model_file.absolutePath)
-        except:
+        except Exception as e:
             print("Couldn't load Keras model into DL4J")
+            raise e
     else:
         raise Exception(
             "Keras model not understood, got: {}".format(keras_model_type))
