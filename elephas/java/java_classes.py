@@ -9,13 +9,18 @@ def to_array(collection, t):
     jtype = None
 
     if t is int:
-        jtype = jgateway.jvm.java.lang.Integer
+        jtype = jgateway.jvm.int
     elif t is long:
-        jtype = jgateway.jvm.java.lang.Long
+        jtype = jgateway.jvm.long
 
     if jtype is not None:
         a = jgateway.new_array(jtype, len(collection))
-        return ArrayList(collection).toArray(a)
+        i = 0
+        for item in collection:
+            a[i] = item
+            i += 1
+
+        return a
     else:
         return ArrayList(collection).toArray()
 
