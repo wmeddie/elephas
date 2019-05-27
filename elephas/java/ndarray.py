@@ -151,7 +151,7 @@ def _from_numpy(np_array):
     strides = np_array.strides
     strides = ArrayList([dim / elem_size for dim in strides])
     shape = ArrayList(np_array.shape)
-    nd4j_array = Nd4j.create(buff, shape.toArray(), strides.toArray(), long(0))
+    nd4j_array = Nd4j.create(buff, to_array(shape, long), to_array(strides, long), long(0))
     assert buff.address() == nd4j_array.data().address()
     return nd4j_array
 

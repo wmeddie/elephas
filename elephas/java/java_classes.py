@@ -1,6 +1,21 @@
 
 import os
 
+def to_array(collection, t):
+    sc = SparkContext._active_spark_context
+    jgateway = sc._gateway
+    jtype = None
+
+    if t is int:
+        jtype = jgateway.jvm.int
+    elif t is long:
+        jtype = jgateway.jvm.long
+
+    if jtype is not None:
+        a = jgateway.new_array(jtype, len(collection))
+        return ArrayList(collection).toArray(a)
+    else:
+        return ArrayList(collection).toArray()
 
 def _py4jclass(cls):
     from pyspark.context import SparkContext
